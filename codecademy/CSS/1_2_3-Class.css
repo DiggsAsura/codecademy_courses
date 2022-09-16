@@ -1,0 +1,34 @@
+/* 
+1. Syntax and Selectors
+2. Selectors
+3. Class
+*/
+
+/* 
+<p class='brand'>Sole Shoe Company</p>
+
+.brand {
+  some:declaration
+}
+
+. in css indicates you are referring a class!
+*/
+
+* {
+  border: 1px solid red;
+}
+
+p {
+  color: green;
+}
+
+h1 {
+  color: maroon;
+}
+
+.title {
+  color: teal;
+}
+
+/* .title will override h1, but will be learned why later */
+

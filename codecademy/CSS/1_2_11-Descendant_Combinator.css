@@ -1,0 +1,93 @@
+/* 
+1. Syntax and Selectors
+2. Selectors
+11. Descendant Combinator
+*/
+
+/*
+In addition to chaining selectors to select elements, CSS also supports 
+selecting elements that are nested within other HTML elements, also known 
+as descendants. For instance, consider the following HTML:
+
+<ul class='main-list'>
+  <li> ... </li>
+  <li> ... </li>
+  <li> ... </li>
+</ul>
+
+The nested <li> elements are descendants of the <ul> element and can 
+be selected with the descendant combinator like so:
+
+.main-list li {
+ 
+}
+
+*/
+
+* {
+  border: 1px solid red;
+}
+
+p {
+  color: green;
+}
+
+h1 {
+  color: maroon;
+}
+
+.title {
+  color: teal;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+#article-title {
+  font-family: cursive;
+}
+
+a[href*='florence'] {
+  color: lightgreen;
+}
+
+a[href*='beijing'] {
+  color: lightblue;
+}
+
+a[href*='seoul'] {
+  color: lightpink;
+}
+
+a:hover {
+  color:darkorange;
+}
+
+.heading-background {
+  background-color: aqua;
+}
+
+#publish-time {
+  color: lightgray;
+}
+
+h5 {
+  color: yellow;
+}
+
+.author-class {
+  color: pink;
+}
+
+#author-id {
+  color: cornflowerblue;
+}
+
+h2.destination {
+  font-family: Tahoma;
+}
+
+.description h5 {
+  color: blueviolet;
+}

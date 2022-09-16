@@ -1,0 +1,79 @@
+/*
+5. Colors
+1. Color
+6. Hue, Saturation, and Lightness
+*/
+
+/* 
+
+The first number represents the degree of the hue, and can be 
+between 0 and 360. The second and third numbers are percentages 
+representing saturation and lightness respectively. Here is an example:
+
+color: hsl(120, 60%, 70%);
+
+1. Hue
+2. Saturation
+3. Lightness
+
+*/
+
+/*
+
+Hue is the first number. It refers to an angle on a color wheel. Red 
+is 0 degrees, Green is 120 degrees, Blue is 240 degrees, and then back 
+to Red at 360.
+
+Saturation refers to the intensity or purity of the color. The saturation 
+increases towards 100% as the color becomes richer. The saturation 
+decreases towards 0% as the color becomes grayer.
+
+Lightness refers to how light or dark the color is. Halfway, or 50%, is 
+normal lightness. Imagine a sliding dimmer on a light switch that starts 
+halfway. Sliding the dimmer up towards 100% makes the color lighter, 
+closer to white. Sliding the dimmer down towards 0% makes the color darker, 
+closer to black.
+
+HSL is convenient for adjusting colors. In RGB, making the color a little 
+darker may affect all three color components. In HSL, that’s as easy as 
+changing the lightness value. HSL is also useful for making a set of colors 
+that work well together by selecting various colors that have the same 
+lightness and saturation but different hues.
+
+*/
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+.wrapper {
+  position: relative;
+  margin: auto;
+  padding: 0;
+  max-width: 75vw;
+}
+
+.midground, .foreground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  margin: 15vh 0 0 15vw;
+  padding: 0;
+  width: 35vw;
+  height: 59vh;
+}
+
+body {
+  background-color: hsl(240, 100%, 80%);
+}
+
+.midground {
+  background-color: hsl(225, 100%, 25%);
+}
+
+.foreground {
+  background-color: hsl(325, 50%, 50%);
+}

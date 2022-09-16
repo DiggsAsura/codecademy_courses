@@ -1,0 +1,23 @@
+/* 
+1. Syntax and Selectors
+2. Selectors
+1. Type
+*/
+
+/* 
+p {
+  color: green;
+}
+
+p is the Type
+color: green; is the declaration
+*/
+
+p {
+  color: green;
+}
+
+h1 {
+  color: maroon;
+}
+

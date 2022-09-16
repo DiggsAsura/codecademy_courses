@@ -1,0 +1,52 @@
+/* 
+3. The Box Model
+2. Changing the Box Model
+3. Box Model: Border-Box
+*/
+
+/* See 3_2_3.....png */
+
+/* Fortunately, we can reset the entire box model and specify a new one:
+border-box !
+
+* {
+  box-sizing: border-box;
+}
+
+(jebuz, is this a nice little feature request on Creator?)
+
+
+The code in the example above resets the box model to border-box for all
+HTML elements. This new box model avoids the dimensional issues that exists in
+the former box model you learned about. 
+
+In this box model, the height and width of the box will remain fixed. The border
+thickness and padding will be included inside of the box, which means the overall
+dimensions of the box do not change!
+
+
+
+EXAMPLE
+
+<h1>Hello World</h1>
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  border: 1px solid black;
+  height: 200px;
+  width: 300px;
+  padding: 10px;
+}
+
+In this example, the height of the box would remain at 200px and the width
+would remain at 300px. The border thickness and padding would remain entirly
+inside of the box!
+
+OMG this has been so much (well minor) annoyance when creating apps in 
+Creator. 
+
+*/
+

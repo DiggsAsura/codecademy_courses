@@ -1,0 +1,41 @@
+/* 
+3. The Box Model
+1. The Box Model
+11. Margin Collapse
+*/
+
+/* 
+#img-one {
+  margin-right: 20px;
+}
+
+#img-two {
+  margin-left: 20px;
+}
+
+These will add up to 40px
+}
+
+while top/bottom the bigger will take effect!
+
+#img-one {
+  margin-bottom: 30px;
+
+#img-two {
+  margin-top: 20px;
+}
+
+So the margin-bottom of 30px will actually take the effect here and nullify
+the margin-top from img-two. 
+
+Remember:
+It may be helpful to think of collapsing vertical margins as  a short person
+tryint to push a taller person. The tall person has longer arms and can easily
+push the short person, while the person with the short arms cannot reach the person
+with long arms. 
+
+*/
+
+
+/* See 3_1_11-Marings_Collapse.png */
+

@@ -1,0 +1,79 @@
+/*
+5. Colors
+1. Color
+7. Opacity and Alpha
+*/
+
+/*
+
+HSLA
+To use opacity in the HSL color scheme, use hsla instead of hsl, and 
+four values instead of three. For example:
+
+color: hsla(34, 100%, 50%, 0.1);
+
+First three same as hsl. The fourth is alpha. This last value is sometimes
+called opacity.
+
+Alpha is a decimal number from zero to one. If alpha is zero, the color will
+be completly transparent. If alpha is one, the color will be opacue. The
+value for half-transparent would be 0.5.
+
+
+RGBA
+Same as above:
+
+color: rgba(234, 45, 98, 0.33);
+
+
+HEX + alpha
+A little unconventional, but still worth mentioning is how hex colors 
+can also have an alpha value. By adding a two-digit hexadecimal value to 
+the end of the six-digit representation (#52BC8280), or a one-digit 
+hexadecimal value to the end of the three-digit representation (#F003), 
+you can change the opacity of a hexadecimal color. Hex opacity ranges 
+from 00 (transparent) to FF (opaque).
+
+
+There is also a named color keyword for zero opacity, transparent. It's 
+equvalient to rgba(0, 0, 0, 0), and it's used like any other color keyword:
+
+color: transparent;
+
+*/
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+.wrapper {
+  position: relative;
+  margin: auto;
+  padding: 0;
+  max-width: 75vw;
+}
+
+.midground, .foreground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  margin: 15vh 0 0 15vw;
+  padding: 0;
+  width: 35vw;
+  height: 59vh;
+}
+
+body {
+  background-color: rgba(0, 255, 0, 0.1);
+}
+
+.midground {
+  background-color: hsla(225, 100%, 25%, 0.4);
+}
+
+.foreground {
+  background-color: hsla(325, 50%, 50%, 0.6);
+}

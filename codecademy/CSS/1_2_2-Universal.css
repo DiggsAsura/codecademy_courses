@@ -1,0 +1,26 @@
+/* 
+1. Syntax and Selectors
+2. Selectors
+2. Universal
+*/
+
+/* Universal is the * {}
+*/
+
+/* Example
+* {
+  font-family: Verdana;
+}
+*/
+
+* {
+  border: 1px solid red;
+}
+
+p {
+  color: green;
+}
+
+h1 {
+  color: maroon;
+}

@@ -1,0 +1,29 @@
+/*
+6. Typography
+1. Typography
+7. Web Fonts
+*/
+
+/* 
+
+Free web fonts:
+
+https://fonts.google.com/
+
+https://fonts.adobe.com/
+
+*/
+
+/*
+
+Free font services, like Google Fonts and Adobe Fonts, host fonts that you 
+can link to from your HTML document with a provided <link> element.
+
+You can also use fonts from paid font distributors like fonts.com by downloading 
+and hosting them with the rest of your site’s files. You can create a @font-face 
+ruleset in your CSS stylesheet to link to the relative path of the font file.
+
+Both techniques for including web fonts into your site allow you to go beyond 
+the sometimes “traditional” appearance of web safe fonts.
+
+*/

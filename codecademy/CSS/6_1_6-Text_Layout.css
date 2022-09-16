@@ -1,0 +1,195 @@
+/*
+6. Typography
+1. Typography
+6. Text Layout
+*/
+
+/*
+
+letter-spacing:
+This property is used to set the horizontal spacing between the individual
+character in an element. It's not common to set the spacing between letters, but
+it can sometimes help the readability of certain fonts or styles. The 
+letter-spacing property takes length values in units, such as 2px or 0.5em.
+
+p {
+  letter-spacing: 2px;
+}
+
+
+word-spacing:
+You can set the space between words with the word-spacing property. It's also
+not common to increase the spacing between words, but it may help enhance
+the readability of bolded or enlarged text. The word-spacing property also
+takes length values in units, such as 3px or 0.2em
+
+h1 {
+  word-spacing: 0.3em;
+}
+
+In the example above, the word spacing is set to 0.3em. For word spacing, em
+values are recommended because the spacing can be set based on the size of the
+font.
+
+
+line-height:
+We can use the line-height property to set how tall we want each line 
+containing our text to be. Line height values can be a unitless number, such
+as 1.2, or a length value, such as 12px, 5% or 2em.
+
+p {
+  line-height: 1.4;
+}
+
+In the example above, the height between lines is set to 1.4. Generally, the 
+unitless value is preferred since it is responsive based on the current font
+size. In other words, if the line-height is specified by a unitless number, 
+changing the font size will automatically readjust the line hight.
+
+
+text-align:
+Aligns text to its parent element
+
+h1 {
+  text-align: right;
+}
+
+*/
+
+
+/* Universal Styles */
+html {
+  font-size: 16px;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #F2F2F2;  
+  text-align: center;  
+}
+
+h1 {
+  padding: 20px;
+  color: white;
+  font-size: 28px;
+  text-align: center;
+  font-family: Georgia;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
+
+h2 {
+  padding: 40px 20px 0 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+
+}
+
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 0;
+  background-color: #fff;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.header li {
+  display: inline-block;
+  padding: 10px;
+}
+
+.header a {
+  color: #4A4A4A;
+}
+
+a.home {
+  color: #4D00FF;
+}
+
+
+/* Banner Section */
+.banner {
+  margin-top: 74px;
+  padding: 40px 0 100px 0;
+  background-color: #4D00FF;
+}
+
+.banner p {
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  color: #ffffff;
+  font-weight: lighter;
+  word-spacing: 0.25em;
+  line-height: 1.4;
+  text-align: justify;
+}
+
+
+/* Editorial Sections */
+.editorial {
+  padding-bottom: 40px;
+  color: #717171;
+  font-family: 'Trebuchet MS', 'Times New Roman', serif;
+}
+
+/* Font Card Sections */
+.font-card {
+  padding: 10px 0 40px 0;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.font-card .creator {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-style: italic;
+}
+
+.sample {
+  display: inline-block;  
+  padding: 5px 40px;
+}
+
+.sample .text {
+  color: #4D00FF;
+  font-size: 100px;
+}
+
+.garamond {
+  font-family: Garamond;
+}
+
+.helvetica {
+  font-family: Helvetica;
+}
+
+.space {
+  
+}
+
+.bold {
+  font-weight: 900;
+}
+
+.regular {
+  font-weight: normal;
+}
+
+.italic {
+  font-weight: normal;
+  font-style: italic;
+}

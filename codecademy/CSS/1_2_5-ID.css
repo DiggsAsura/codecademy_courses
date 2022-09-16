@@ -1,0 +1,41 @@
+/* 
+1. Syntax and Selectors
+2. Selectors
+5. ID
+*/
+
+/*
+<h1 id='large-title'> ... </h1>
+
+#large-title {
+ 
+}
+
+ID's are referred by # in css!
+
+*/
+
+* {
+  border: 1px solid red;
+}
+
+p {
+  color: green;
+}
+
+h1 {
+  color: maroon;
+}
+
+.title {
+  color: teal;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+#article-title {
+  font-family: cursive;
+}
+

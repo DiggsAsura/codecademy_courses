@@ -1,0 +1,41 @@
+/* 
+1. Syntax and Selectors
+2. Selectors
+4. Multiple Classes
+*/
+
+/* Example that can add multiple classes in html
+
+.green {
+  color: green;
+}
+ 
+.bold {
+  font-weight: bold;
+}
+
+<h1 class='green bold'> ... </h1>
+
+Only separated by spaces!
+
+*/
+
+* {
+  border: 1px solid red;
+}
+
+p {
+  color: green;
+}
+
+h1 {
+  color: maroon;
+}
+
+.title {
+  color: teal;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
