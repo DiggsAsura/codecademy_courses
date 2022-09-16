@@ -1,0 +1,41 @@
+// Codecademy JavaScript Course
+// Feb 16. 2022 - Day 2
+
+// Chap 1 Introduction
+// 1. Introduction to JavaScript
+// 4. Arithmetic Operators
+
+/* 
+Basic arithmetic often comes in handy when programming. 
+
+An operator is a character that performs a task in our code. JavaScript has several built-in arithmetic operators,
+that allow us to perform mathematical calculations on numbers. These include the following operators and their
+corresponding symbols:
+
+1. Add: +
+2. Subtract: -
+3. Multiply: *
+4. Divide: /
+5. Remainder (modulo): %
+*/
+
+/*
+Tasks. 
+1. Inside of a console.log(), add 3.5 to your age
+	 This is the age you'll be when we start sending people to live on Mars
+
+2. On a new line write another console.log(). Inside the parantheses, take the current year and subtract 1969.
+	 The answer is how many years it's been since the 1969 moon landing.
+	 
+3. Create another console.log(). Inside the parantheses divide 65 by 240.
+	 
+4. Create another console.log(). Inside the parantheses, multiply 0.2708 by 100.
+	 That's the percent of the sun that is made up of helium. Assuming we could stand on the sun,
+	 we'd all sound like chipmunks!
+*/
+
+console.log(37 + 3.5);
+console.log(2022 - 1969);
+console.log(65 / 240);
+console.log(0.2708 * 100);
+
