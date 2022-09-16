@@ -1,0 +1,13 @@
+
+To get into the anaconda enviroment
+source /opt/anaconda/bin/activate root
+
+from here can access jupyter
+jupyter notebook
+
+
+reccomended:
+https://jakevdp.github.io/PythonDataScienceHandbook/01.01-help-and-documentation.html
+
+Jupyter Notebook stuffs
+https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/what_is_jupyter.html
