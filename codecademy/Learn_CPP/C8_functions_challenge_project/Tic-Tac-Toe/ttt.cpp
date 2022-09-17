@@ -13,4 +13,17 @@
  * Br Kenneth / DiggsAsura
  */
 
+#include <iostream>
+#include "headers.hpp"
+
+
+int main() {
+	
+	std::string player1 = "diggs";
+	std::string player2 = "asura";
+
+	grid();
+
+
+}
 
