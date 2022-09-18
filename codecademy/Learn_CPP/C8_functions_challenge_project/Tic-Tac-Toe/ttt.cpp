@@ -13,6 +13,24 @@
  * Br Kenneth / DiggsAsura
  */
 
+
+/* So need to find out quite a bit to get this done. 
+ * It's not possible, well at least if i want to keep my sanity, to check every possible ways to fill the board,
+ * which woudl be something like 9^9 
+ *
+ * Possible winning setups is probably the way to go
+ *
+ * if ("winning combination") {
+ * 	grats
+ * else {
+ * 	nope
+ * }
+ *
+ * Then it has to be two players X and O
+ *
+ *
+ * And there need to be a while loop which keeps the game going until the board is filled. Alternating P1 and P2
+
 #include <iostream>
 #include "headers.hpp"
 
