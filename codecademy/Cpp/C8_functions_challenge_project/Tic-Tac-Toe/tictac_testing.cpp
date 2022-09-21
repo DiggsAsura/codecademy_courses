@@ -1,26 +1,28 @@
 #include <iostream>
 #include <vector>
 
-std::vector<std::string> moves = {""};
+std::vector<std::string> moves = {};
 
-std::string x = "";
-std::string y = "";
+std::string x;
+std::string y;
 
 int main() {
-	while (moves_total.size() < 9) {
-		if (moves_total() % 2 == 0) {
+	std::cout << "Welcome to Tic Tac Toe! \n\n";
+
+	while (moves.size() < 9) {
+		if (moves.size() % 2 == 0) {
 			std::cout << "X: ";
 			std::cin >>  x;
-			moves_total.push_back(x);
+			moves.push_back(x);
 		}
 		else {
 			std::cout << "Y: ";
 			std::cin >> y;
-			moves_total.push_back(y);
+			moves.push_back(y);
 		}
 	}
 
-	for (auto move : moves_total) {
+	for (std::string move : moves) {
 		std::cout << move << "\n";
 	}
 }
