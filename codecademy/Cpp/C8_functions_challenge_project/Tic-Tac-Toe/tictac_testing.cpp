@@ -1,7 +1,9 @@
 #include <iostream>
 #include <vector>
 
-std::vector<std::string> moves = {};
+static std::vector<std::string> moves;
+static std::vector<std::string> x_moves;
+static std::vector<std::string> y_moves;
 
 std::string x;
 std::string y;
@@ -14,15 +16,27 @@ int main() {
 			std::cout << "X: ";
 			std::cin >>  x;
 			moves.push_back(x);
+			x_moves.push_back(x);
 		}
 		else {
 			std::cout << "Y: ";
 			std::cin >> y;
 			moves.push_back(y);
+			y_moves.push_back(y);
 		}
 	}
 
 	for (std::string move : moves) {
 		std::cout << move << "\n";
+	}
+
+	std::cout << "\n\nX moves: \n";
+	for (std::string xm : x_moves) {
+		std::cout << xm << "\n";
+	}
+
+	std::cout << "\n\nY moves: \n";
+	for (std::string ym : y_moves) {
+		std::cout << ym << "\n";
 	}
 }
