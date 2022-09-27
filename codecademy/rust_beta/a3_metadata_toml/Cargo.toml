@@ -1,0 +1,17 @@
+[package]
+name = "a3_metadata_toml"
+version = "0.1.0"
+edition = "2021"
+
+description = "Adding a description for crates.io"
+keywords = "Keywords for searches on 'crates.io'"
+documentation = "URL to the crate's documentation"
+homepage = "URL to the crate's homepage"
+repository = "Url to the crate's source repository"
+authors = ["The authors of the crate"]
+license = "The crate's license"
+rust-version = "The minimum supported Rust version"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
