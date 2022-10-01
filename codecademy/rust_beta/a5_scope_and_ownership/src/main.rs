@@ -1,13 +1,16 @@
 fn main() {
-
+    
+    println!("{:?}", heap_clone());
+    println!("{:?}", stack_vs_heap_2());
+    println!("{:?}", stack_vs_heap_1());
     println!("{:?}", struct_test());
 //    println!("{:?}", visibility());
     println!("{:?}", scope());
     println!("{:?}", p1_blocks());
     println!("{:?}", sum());    
 
-    // This part is supposed to work, following Rust Beta course but it's not
-    // really doing that or..?
+    // This part is supposed to work, following Rust Beta course but it's no
+    //
     //let sum = {
     //    let number_1 = 111;
     //    let number_2 = 222;
@@ -138,3 +141,111 @@ fn struct_test() {
     println!("End of struct_test()");
 }
 
+// When our crate is a library, all items denoted as public will be accessible 
+// to anyone who imports our library. More information about pub and use
+// can be found in the modules article.
+
+
+// OWNERSHIP
+// -----------
+//
+// Scoping rules in Rust are very strict, but with good reason. Managing
+// lifetimes and mutability in a memory-safe way is much easier when we disallow
+// accessing items from parent blocks. 
+//
+// Rules
+// ------
+//
+// The rules that the Rust compiler follows to validate that we do not attempt
+// unsafe behavior are as follows:
+//
+// 1. Each value in Rust has a variable that's called its owner
+// 
+// 2. There can only be one owner at a time.
+//
+// 3. When the owner goes out of scope, the value will be dropped.
+//
+// These rules of ownership have differing implications depending on whether
+// our data is stored on the stack or the heap.
+//
+//
+// Stack Vs Heap
+// ---------------
+//
+// If we assign a variable to an existing variable with a stack-based type 
+// such as i32, it will make a computationally inexpensive copy of that value.
+//
+
+fn stack_vs_heap_1() {
+    let stack_1 = 32;
+    let stack_2 = stack_1; // The value of 'stack_1' is copied into 'stack_2'
+
+    // We now have two values we can work with
+    println!("{stack_1}");
+    println!("{stack_2}");
+}
+
+// When working with datatypes that utilize the heap, such as String, we cannot
+// copy values from one variable to another since heap-based types do not
+// implement the Copy trait.
+//
+// Instead of copying, Rust will instead move the value out of the original
+// variable into the new one. 
+
+fn stack_vs_heap_2() {
+    let heap_1 = String::from("Only you can!");
+    let heap_2 = heap_1; // The value of heap_1 is moved into heap_2
+
+    // We cannot print 'heap_1' because it's now owned by 'heap_2'
+    println!("{heap_2}");
+}
+
+// We can choose to clone() our data, which is equivalent to copying on the
+// heap. But unlike implicit copying, cloning data must always be explicitly 
+// stated.
+//
+// We can clone any type that implements the Clone trait.
+
+fn heap_clone() {
+    let heap_1 = String::from("Prevent corruption!");
+    let heap_2 = heap_1.clone(); // We have now cloned the data
+
+    println!("{heap_1}");
+    println!("{heap_2}");
+}
+
+// Be aware that cloning is only necessary when we need another copy of the 
+// data. When we are not in need of a separate copy, we can instead reference
+// the data. 
+
+
+// Functions
+// -----------
+//
+// Ownership rules with functions work much the same way. 
+
+// When we have a function that return a value, the ownership of that value is
+// passed to the caller.
+
+fn ownership_functions() {
+    fn abc() -> String {
+        "abs".to_string()
+    }
+
+    let letters = abc(); // The value created in 'abc()' is now owned by 
+                         // 'letters'
+
+    // When we have a function that passes a value through it, it can be 
+    // thought of as temporarily taking ownership of that value until the
+    // function call has completed.
+
+    fn print_through(s: String) -> String {
+        s
+    }
+
+    let finished = print_through(letters); // letters has been moved into 
+                                           // finished
+}
+
+// NOT entirly sure whats going on in the last function here... But I hope it
+// will make sense as I'm going. 
