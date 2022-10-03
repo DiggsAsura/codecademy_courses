@@ -1,4 +1,6 @@
 fn main() {
+    ex4();
+    ex3();
     ex2();
     ex1();
 }
@@ -67,3 +69,102 @@ fn ex2() {
         it's a beautiful day."
     };
 }
+
+
+// std Library Macros
+// ===================
+//
+// Macros are used very commonly throughout the std library. Let's take a peek at some of 
+// the most commonly used function-like macros.
+//
+// format!()
+// ----------
+//
+// We can interpolate and format strings from the format!() macro. 
+
+fn ex3() {
+    let exit = 8;
+    let town = "Willoughby";
+
+    let address = format!("Next stop, {town}. Train is at exit number {exit}.");
+    println!("{address}");
+}
+
+// The possibilities for interpolating and formatting values with this syntax are expansive.
+// A detailed list of all capabilities can be found in the std::fmt documentation:
+// https://doc.rust-lang.org/std/fmt/
+
+// println!()
+// -----------
+//
+// print!() and println!() internally call the format!() macro while also printing the 
+// formatted String to stdout. Printing to stderr is accomplished with eprint() and
+// eprintln!().
+
+fn ex4() {
+    let jungle_bird = "Macaw";
+    let sound = "caws";
+
+    print!("The {jungle_bird}");  // Does not print a newline
+    println!(" {sound}. ");       // Prints a newline
+}
+
+// assert!()
+// ----------
+//
+// We can assert a conditional evaluation or panic upon failure with the assert!()
+// and assert_eq!() macros. To assert non-equality, we can use assert_ne!().
+
+fn ex5() {
+    let number = 12;
+    let you = "us";
+    let i = "us";
+
+    assert!(you == i);
+    assert_eq!(i, you);
+    assert_ne!(number, you.len());
+}
+
+
+// Panicking Macros
+// =================
+
+// We can utilize the unreachable!() macro in situations where the compiler cannot 
+// determine code to be unreachable. The unimplemented!() macro denotes that a part
+// of your code has not yet been implemented. The todo!() macro denotes the same but 
+// implies an intent to complete it.
+//
+// These three macros will all panic if they are reached. We can also intentionally panic
+// our program utilizing the panic!() macro.
+//
+// All of these macros can also optionally print a supplied string as a message upon
+// panicking. 
+
+fn ex6() {
+    let number = 10;
+
+    if number <= 5 {
+        todo!("we will handle this outcome soon.")
+    } else if number > 5 {
+        unimplemented!("we might do something here eventually")
+    } else {
+        unreachable!()
+    }
+    panic!("we should use panics sparingly.");
+}
+
+// Attributes
+// ===========
+//
+// The other place we commonly encounter macros in Rust is in the form of Attributes.
+// These allow us to auto-generate code for certain types or to provide additional
+// functionality. 
+
+fn ex7() {
+    // A commonly encountered attribute. 
+    #[derive(Debug)]
+    struct Chapter(String);
+}
+
+// More info about attributes and the #[derive()] macro can be found in the attributes 
+// article.
