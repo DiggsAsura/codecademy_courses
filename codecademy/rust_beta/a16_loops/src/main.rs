@@ -5,6 +5,7 @@ fn main() {
     ex4();
     ex5();
     ex6();
+    ex7();
 }
 
 // Loops
@@ -121,3 +122,25 @@ fn ex6() {
         }
     }
 }
+
+
+// for/in
+// -------
+//
+// It is possible to iterate over the items of a collection utilizing the for and in
+// keywords. Any collection which implements the std::iter::Iterator trait can utilize
+// this pattern.
+
+fn ex7() {
+    let numbers = vec![10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+
+    println!("the numbers are ");
+
+    // Here 'n' is newly created variable for each item of our collection.
+    for n in numbers {
+        println!("{n}");
+    }
+}
+
+// Another way to approach looping over collections is through functional iteration.
+
