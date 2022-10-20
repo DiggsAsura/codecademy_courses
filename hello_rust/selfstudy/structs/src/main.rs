@@ -19,5 +19,14 @@ fn main() {
                                                                     // player1.name
     // Below is cool. 
     println!("{}, has the same stats as {}! F.x the level {} and the job {}.", player3.name, player1.name, player3.level, player3.job);
+
+    // But did it eat player1.job f.x? 
+//    println!("{}", player1.job);
+    // UPPS, this value was moved. String does not implement the Copy trait. Bummer. 
+
+    println!("But the level should be ok, no? {}", player1.level); // yup, works. u8 implements the
+                                                                   // copy trait. 
+
+
 }
 
