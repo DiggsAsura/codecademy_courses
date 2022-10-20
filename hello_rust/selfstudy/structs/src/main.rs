@@ -11,12 +11,13 @@ struct Player {
 fn main() {
     let player1 = Player { name:"Kenneth".to_string(), level:10, job:"Warrior".to_string() };
     let player2 = Player { name: "Kayi".to_string(), level: 12, job: "Wifu".to_string() };
-
-    println!("Hello {} and {}!", player1.name, player2.name);
-    
+    let player3 = Player { name: String::from("Sarah"), ..player1 }; // very nice ..player1
     let combined_level: u8 = player1.level + player2.level;
 
+    println!("Hello {} and {}!", player1.name, player2.name);
     println!("Your combined level is currently {combined_level}");  // So this works, but not
                                                                     // player1.name
+    // Below is cool. 
+    println!("{}, has the same stats as {}! F.x the level {} and the job {}.", player3.name, player1.name, player3.level, player3.job);
 }
 
