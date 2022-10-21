@@ -1,3 +1,4 @@
+#![allow(deprecated)]
 // Ok I somewhat got the hunch about structs, now I need traits and how to implement them into
 // structs.. 
 
@@ -17,6 +18,9 @@ pub struct Monster {
 // traits. 
 pub trait Presentation {
     fn information(&self) -> String; // REmember &self
+    fn presentate(&self) -> String {
+        String::from("Just a string nothing more.")
+    }
 }
 
 // The impl might actually be the harder part!
@@ -24,6 +28,9 @@ impl Presentation for Player {
     fn information(&self) -> String {
         format!("Name: {} \nLevel: {}\nJob: {}", self.name, self.level, self.job)
     }
+//    fn presentate(&self) -> String {
+//        format!("{:?}", self)
+//    }
 }
 
 impl Presentation for Monster {
@@ -60,6 +67,7 @@ fn main() {
     println!("Rip... Comparing to my own stats...");
     println!("\n{}\n", player_1.information());
 
+    println!("{}", player_1.presentate());
 
 }
 
