@@ -30,3 +30,6 @@ fn main() {
 
 }
 
+// Ok so have probably read this hundred times, but I finally think I got structs. It's basically a
+// named tuple template. With the ability to call with the dot. Very nice!
+
