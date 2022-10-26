@@ -12,7 +12,7 @@ fn main() {
             println!("This is a really long string and '{:?}'", i);
             // ^ Needed 2 indentations just so we could destructure 'i' from the option.
         },
-        _ => {},
+        _ => (),
         // ^ Required because 'match' is exhaustive. Doesn't it seem 
         // like wasted space?
     };
@@ -54,4 +54,62 @@ fn main() {
         // The condition evaluated false. This branch is the default:
         println!("I don't like letters. Let's go with an emoticon 😃");
     }
+
+    /* In the same way, if let can be used to match any enum value: */
+    enum Foo {
+        Bar,
+        Baz,
+        Qux(u32)
+    }
+
+    // Create example variables
+    let a = Foo::Bar;
+    let b = Foo::Baz;
+    let c = Foo::Qux(100);
+
+    // Variable 'a' matches Foo:Bar
+    if let Foo::Bar = a {
+        println!("a is foobar");
+    }
+
+    // Variable b does not match Foo::Bar
+    // So this will print nothing
+    if let Foo::Bar = b {
+        println!("b is foobar");
+    } else {
+        println!("b is NOT foobar");
+    }
+
+    // Variable c matches Foo::Qux which has a value
+    // Similar to Some() in the previous example
+    if let Foo::Qux(i) = c {
+        println!("c is {}", i);
+    }
+
+    // Binding also works with 'if let'
+    if let Foo::Qux(i @ 100) = c {
+        println!("c is one hundred");
+    }
+    
+
+    /* Another benefit is that if let allows us to match non-parameterized enum variants. This is
+     * true even in cases where the enum doesn't implement or derive PartialEq. In such cases if
+     * Foo::Bar == a would fail to compile, because instances of the enum cannot be equated,
+     * however, if let will continue to work.
+     *
+     * Would you like a challenge? Fix the following example to use if let: */
+
+    // This enum purposely neither implements nor derives PartialEq.
+    // That is why comparing Foo::Bar == a fails below.
+    enum Fooo {Bar}
+
+    let x = Fooo::Bar;
+
+    // Variable a matches Foo::Bar
+    if let Fooo::Bar = x {
+        println!("x is foobar");
+    }
+
 }
+
+
