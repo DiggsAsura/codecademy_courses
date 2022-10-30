@@ -16,3 +16,8 @@ pub fn indirect_access() {
 
     private_function();
 }
+
+/* Libraries get prefixed with "lib", and by default they get named after their crate file, but
+ * this default name can be overridden by passing the --crate-name option to rustc or by using the
+ * crate_name_attribute */
+
