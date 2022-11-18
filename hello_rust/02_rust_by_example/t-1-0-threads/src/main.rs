@@ -22,3 +22,5 @@ fn main() {
         let _ = child.join();
     }
 }
+
+/* These threads will be scheduled by the OS. */
