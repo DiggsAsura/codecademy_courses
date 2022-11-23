@@ -10,7 +10,8 @@ fn main() {
 //    println!("{guess}");
 
     ex1();      // Scalar Types
-    ex2();
+    ex2();      // Integers 
+    ex3();      // Number literals
 }
 
 fn ex1() {          // Saclar Types
@@ -100,3 +101,20 @@ fn ex2() {      // wtf. why is usize changing?
         _ => println!("nope"),
     }
 }
+
+
+fn ex3() {      // Number literals
+
+    println!(r" 
+                Number literals         | Example
+                ------------------------|-------------
+                Decimal                 | 09_222
+                Hex                     | 0xff
+                Octal                   | 0o77
+                Binary                  | 0b1111_0000
+                Byte (u8 only)          | b'A'
+
+                ");
+
+}
+
