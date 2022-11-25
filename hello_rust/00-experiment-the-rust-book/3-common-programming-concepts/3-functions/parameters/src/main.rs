@@ -1,3 +1,4 @@
+/* Function parameters needs to have specific types. */
 fn main() {
     another_function("argument");
 }
