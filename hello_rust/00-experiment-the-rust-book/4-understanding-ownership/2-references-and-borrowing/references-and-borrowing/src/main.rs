@@ -76,3 +76,6 @@ fn ex2() {
     }
 }
 */
+
+/* Just as vaiables are immutable by default, so are references. We're not allowed to modify
+* something we have a reference to. */
