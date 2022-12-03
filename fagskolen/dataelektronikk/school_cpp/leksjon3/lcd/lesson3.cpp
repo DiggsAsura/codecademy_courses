@@ -77,7 +77,7 @@ void loop()
   lcd.setCursor(0, 1);
   lcd.print(num);
   lcd.setCursor(12,1);
-  lcd.pring(hex);
+  lcd.print(hex);
   delay(1000);
   
 }
