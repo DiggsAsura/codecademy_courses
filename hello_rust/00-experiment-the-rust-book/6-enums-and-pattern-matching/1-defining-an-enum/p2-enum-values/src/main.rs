@@ -45,6 +45,7 @@ fn main() {
     
     // ex2
     ex2();
+    ex7();
 }
 
 /* Here, we've defined a struct IpAddr that has two fields: a kind field that is of type IpAddrKind
@@ -95,4 +96,99 @@ fn ex3() {
     let loopback = IpAddr::V6(String::from("::1"));
 }
 
+/* We've shown several different ways to define data structures to store version four and version
+ * six IP addresses. However, as it turns out, wanting to store IP addresses and encode which kind
+ * they are is so common that the standard library has a definition we can use! Let's look at how
+ * the standard library defines IpAddr: it has the exact enum and variants that we've defined and
+ * used, but it embeds the address data inside the variants in the form of two different structs,
+ * which are defined differently for each variant.*/
 
+fn ex4() {
+    struct Ipv4Addr {
+        // --snip--
+    }
+
+    struct Ipv6Addr {
+        // --snip--
+    }
+
+    enum IpAddr {
+        V4(Ipv4Addr),
+        V6(Ipv6Addr),
+    }
+}
+
+/* This code illustrates that you can put any kind of data inside an enum variant: strings, numeric
+ * types, or structs, for example. You can even include another enum! Also, standard librarty types
+ * often not much more complicated than what you might come up with.
+ *
+ * Note that even though the standard libaray contains a definition of IpAddr, we can still create
+ * and use our own definition without conflict because we haven't brought the standard library's
+ * definition into our scope. We'll talk more aobut bringing types into scope in Chapter 7. 
+ *
+ * Let's look at another example of an enum here. This one has a wide variety of types embedded in
+ * its variants. */
+
+fn ex5() {
+    enum Message {
+        Quit,
+        Move { x: i32, y: i32 },
+        Write(String),
+        ChangeColor(i32, i32, i32),
+    }
+}
+
+/* The enum has four variants with different types: 
+ * - Quit has no data associated with it at all.
+ * - Move has named fields like a struct does. 
+ * - Write has a single String.
+ * - ChangeColor has three i32 values.
+ *
+ * Defining an enum with variants such as the ones here is similar to defining different kinds of
+ * struct definitions, except the enum doesn't use the struct keyword and all the variants are
+ * grouped together under the Message type. The following structs could hold the same data that the
+ * preceding enum variants hold: */
+
+fn ex6() {
+    struct QuitMessage; // unit struct
+    struct MoveMessage {
+        x: i32,
+        y: i32,
+    }
+    struct WriteMessage(String); // tuple struct
+    struct ChangeColorMessage(i32, i32, i32); // tuple struct
+}
+
+/* But if we used the different structs, which each have their ownt type, we couldn't as easily
+ * define a function to take any of these kinds of messages as we could with the Message enum
+ * defined in the previous example, which is a single type. 
+ *
+ * There is one more similarity between enums and structs: just as we're able to define methods on
+ * structs using impl, we're also able to define methods on enums. Here's a method named call that
+ * we could dfeine on our Message enum: */
+
+fn ex7() {
+    #[derive(Debug)]
+    enum Message {
+        Quit,
+        Move { x: i32, y: i32 },
+        Write(String),
+        ChangeColor(i32, i32, i32),
+    }
+
+    impl Message {
+        fn call(&self) {
+            println!("call");
+        }
+    }
+    
+    let m = Message::Write(String::from("hello"));
+    m.call();
+    println!("m: {:?}", m);
+}
+
+/* The body of the method would use self to get the value that we called the method on. In this
+ * example, we've created a variable m that has the value Message::Write(String::from("hello")),
+ * and that is what self will be in the body of the call method when m.call() runs.
+ *
+ * Let's look at another enum in the standard library that is very common and useful: Option. */
