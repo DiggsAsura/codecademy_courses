@@ -9,3 +9,5 @@ a different hasher. A hasher is a type that implements the BuildHasher trait. We
 talk about traits and how to implement them in Chapter 10. You don't necessarily
 have to implement your own hasher from scratch; crates.io has libraries shared
 by other Rust users that proivde hasher implementing many common hashing algorithms.
+
+https://en.wikipedia.org/wiki/SipHash
