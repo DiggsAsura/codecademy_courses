@@ -82,4 +82,15 @@ note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose bac
 // debug symbols must be enabled. Debug symbols are enabled by default when using
 // cargo build or cargo run without the --release flag, as we have here.
 //
-// In the output in Listing 9-2, line 6
+// In the output in Listing 9-2, line 6 of the backtrace points to the line in our project
+// that's causing the problem: line 4 of src/main.rs. If we don't want our program to
+// panic, we should start our investigation at the location pointed to by the first
+// line mentioning a file we wrote. In Listing 9-1, where we deliberately wrote
+// code that would panic, the way to fix the panic is to not request an element beyond the
+// range of the vector indexes. When your code panics in the future, you'll need to
+// figure out what action the code is taking with that values to cause the panic and what
+// the code should do instead.
+//
+// We'll come back to panic! and when we should and shold not use panic! to handle error
+// conditions in the "To panic! or Not to panic!" section later in this chapter. Next,
+// we'll look at how to recover from an error using Result.
