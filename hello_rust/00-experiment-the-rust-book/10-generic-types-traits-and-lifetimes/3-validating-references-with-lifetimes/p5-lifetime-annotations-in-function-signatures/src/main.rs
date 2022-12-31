@@ -46,4 +46,81 @@ fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
 // intended the relationships of the lifetimes to be, the compiler might only be able to point to a
 // use of our code many steps away from the cause of the problem.
 //
+// When we pass concrete references to longest, the concrete lifetime that is substituted for 'a is
+// the part of the scope of x that overlaps the scope of y. In other words, the generic lifetime 'a
+// will get the concrete lifetime that is equal to the smaller of the lifetimes of x and y. Because
+// we've annotated the returned reference with the same lifetime parameter 'a, the returned
+// reference will also be valid for the length of the smaller of the lifetimes of x and y.
 //
+// Let's look at how the lifetime annotations restrict the longest function by passing in
+// references that have difference concrete lifetimes. Listgin 10-22 is a straightforward example.
+
+fn main() {
+    let string1 = String::from("long string is long");
+
+    {
+        let string2 = String::from("xyz");
+        let result = longest(string1.as_str(), string2.as_str());
+        println!("The longest string is {}", result);
+    }
+}
+// 10-22: Using the longest function with refrence to String values that have different concrete
+// lifetimes
+
+// In this example, string1 is valid until the end of the outer scope, string2 is valid until the
+// end of the inner scope, and result references something that is valid until the end of the inner
+// scope. Run this code and you'll see that the borrow checker approves; it will compile and print
+// the longest string is long string is long.
+//
+// Next, let's try an example that shows that the lifetime of the reference in result must be the
+// smaller lifetime of the two arguments. We'll move the declaration of the result variable outside
+// the inner scope but leave the assignment of the value to the result variable inside the scope
+// with string2. Then we'll move the println! that uses result to outside the inner scope, after
+// the inner scope has ended. The code in Listing 10-23 will not compile
+
+fn listing_10_23() {
+    let string1 = String::from("long string is long");
+    let result;
+    {
+        let string2 = String::from("xyz");
+        result = longest(string1.as_str(), string2.as_str());
+    }
+//    println!("The longest string is {}", result);
+}
+// 10-23: Attempting to use result after string2 has gone out of scope
+
+// When we try to compile this code, we get this error:
+
+/*
+$ cargo run
+   Compiling chapter10 v0.1.0 (file:///projects/chapter10)
+error[E0597]: `string2` does not live long enough
+ --> src/main.rs:6:44
+  |
+6 |         result = longest(string1.as_str(), string2.as_str());
+  |                                            ^^^^^^^^^^^^^^^^ borrowed value does not live long enough
+7 |     }
+  |     - `string2` dropped here while still borrowed
+8 |     println!("The longest string is {}", result);
+  |                                          ------ borrow later used here
+
+For more information about this error, try `rustc --explain E0597`.
+error: could not compile `chapter10` due to previous error
+*/
+
+// The error shows that for result to be valid for the println! statement, string2 would need to be
+// valid until the end of the outer scope. Rust knows this because we annotated the lifetimes of
+// the function parameters and return values using the same lifetime parameter 'a.
+//
+// As humans, we can look at this code and see that string1 is longer than string2 and therefor
+// result will containt a reference to string1. because string1 has not gone out of scope yet, a
+// reference to string1 will still be valid for the println! statement. However, the compiler can't
+// see that the reference is valid in this case. We've told Rust that the lifetime of the reference
+// returned by the longest is the same as the smaller of the lifetimes of the references passed in.
+// Therefore, the borrow checker disallows the code in Listing 10-23 as possibly having an invalid
+// reference.
+//
+// Try designing more experiments that vary the values and lifetimes of the references passed in to
+// the longest function and how the returned references is used. Make hypotheses about wheter or
+// not your experiments will pass the borrow checker before you compile;  then check to see if
+// you're right!
