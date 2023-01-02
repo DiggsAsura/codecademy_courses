@@ -11,12 +11,55 @@ impl TestResult {
         &self.curve
     }
 
-    /// If there is a curve, then increments all
-    /// scores by the curve
+    // Original code
+    /*
     pub fn apply_curve(&mut self) {
         if let Some(curve) = self.get_curve() {
             for score in self.scores.iter_mut() {
                 *score += curve;
+            }
+        }
+    } */
+
+    // fix one
+    // Nope, immutable borrow
+    /*
+    pub fn apply_curve(&mut self) {
+        if let Some(curve) = self.get_curve().as_ref() {
+            for score in self.scores.iter_mut() {
+                *score += curve;
+            }
+        }
+    } */
+
+    // fix two
+    // Nope
+    /*
+    pub fn apply_curve(&mut self) {
+        if let Some(curve) = self.get_curve() {
+            for score in self.scores.iter() {
+                *score += *curve;
+            }
+        }
+    }*/
+
+    // fix three
+    // works!
+    /*
+    pub fn apply_curve(&mut self) {
+        if let Some(curve) = self.curve {
+            for score in self.scores.iter_mut() {
+                *score += curve;
+            }
+        }
+    } */
+
+    // fix four
+    // works as well, but i think this is the worst option, because of clone.
+    pub fn apply_curve(&mut self) {
+        if let Some(curve) = self.get_curve() {
+            for score in self.scores.clone().iter_mut() {
+                *score += *curve;
             }
         }
     }
