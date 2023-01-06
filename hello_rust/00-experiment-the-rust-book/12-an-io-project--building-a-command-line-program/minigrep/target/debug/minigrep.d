@@ -1,1 +1,0 @@
-/Users/kenneth/github/study/hello_rust/00-experiment-the-rust-book/12-an-io-project--building-a-command-line-program/minigrep/target/debug/minigrep: /Users/kenneth/github/study/hello_rust/00-experiment-the-rust-book/12-an-io-project--building-a-command-line-program/minigrep/src/main.rs
