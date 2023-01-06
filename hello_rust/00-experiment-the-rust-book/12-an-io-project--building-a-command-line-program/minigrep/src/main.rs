@@ -1,4 +1,5 @@
 use std::env;   // 12-1
+use std::fs;    // 12-4
 
 fn main() {
     // Reading the Argument Values
@@ -17,5 +18,12 @@ fn main() {
     println!("In file {}", file_path);
     // 12-2: Creating variables to hold the query argument and file path argument
     // ----------------------------------------------
+
+    // Reading a file
+    // ----------------------------------------------
+    let contents = fs::read_to_string(file_path)
+        .expect("Should have been able to read the file");
+
+    println!("With text:\n{contents}");
 }
 
