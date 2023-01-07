@@ -11,8 +11,11 @@ fn main() {
 
     // Saving the Argument Values in Variables
     // ----------------------------------------------
-    let query = &args[1];       // 1 because 0 is the program itself (minigrep)
-    let file_path = &args[2];   // 2 because 1 is the query
+    //let query = &args[1];       // 1 because 0 is the program itself (minigrep)
+    //let file_path = &args[2];   // 2 because 1 is the query
+
+    // 12-3
+    let (query, file_path) = parse_config(&args);
 
     println!("Searching for {}", query);
     println!("In file {}", file_path);
@@ -27,3 +30,10 @@ fn main() {
     println!("With text:\n{contents}");
 }
 
+// 12-3
+fn parse_config(args: &[String]) -> (&str, &str) {
+    let query = &args[1];
+    let file_path = &args[2];
+
+    (query, file_path)
+}
