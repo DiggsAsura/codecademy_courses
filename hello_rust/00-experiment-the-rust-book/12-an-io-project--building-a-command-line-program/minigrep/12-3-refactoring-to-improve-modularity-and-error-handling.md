@@ -56,3 +56,6 @@ main.rs will be small enough to verify its correctness by reading it. Let's rewo
 following this process.
 
 
+### Extracting the Argument Parser
+
+We'll *test* **test**
