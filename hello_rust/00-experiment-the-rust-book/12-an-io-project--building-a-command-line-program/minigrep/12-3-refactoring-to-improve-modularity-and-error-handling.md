@@ -133,3 +133,26 @@ variables so it now uses the fields on the Config struct instead.
 Now our code more clearly conveys that **query** and **file_path** are related and that their purpose is
 to configure how the program will work. Any code that uses these values knows to find them in the
 **config** instance in the fields named for their purpose.
+
+
+### Creating a Constructor for Config
+
+So far, we've extraced the logic responsible for parsing the command line arguments from **main**
+and place it in the **parse_config** function. Doing so helped us to see that the **query** and
+**file_path** values were related and that relationship should be conveyed in our code. We then
+added a **Config** struct to name the related purpose of **query** and **file_path** and to be able to
+return the values' names as struct field names from the **parse_config** function.
+
+So now that the purpose of the **parse_config** function is to create a **Config** instance, we can
+change **parse_config** from a plain function to a function named **new** that is associated with the
+**Config** struct. Making this change will make the code more idiomatic. We can create instances of
+types in the standard library, such as **String**, by calling **String::new**. Similarly, by changing
+**parse_config** into a **new** function associated with **Config**, we'll be able to create instances of
+**Config** by calling **Config::new**. Listing 12-7 shows the changes we need to make.
+
+*editing src/main.rs*
+12-7: Changing **parse_config** into **Config::new**
+
+We've updated **main** where we were calling **parse_config** to instead call **Config::new**. We've
+changed the name of **parse_config** to **new** and moved it withint an **impl** block, which associates
+the **new** function with **Config**. Try compiling this code again to make sure it works.
