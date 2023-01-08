@@ -112,6 +112,7 @@ string data. However, cloning the data also makes our code very straightforward 
 have to manage the lifetimes of the references; in this circumstance, giving up a little performance
 to gain simplicity is a worthwihile trade-off.
 
+
 - ---------
 ### The Trade-Offs of Using clone
 
@@ -123,3 +124,12 @@ It's better to have a working program that's a bit inefficient than to try to hy
 on your first pass. As you become more experienced with Rust, it'll be easier to start with the
 most efficient solution, but for now, it's perfectly acceptable to call clone.
 - ---------
+
+
+We've updated main so it places the instance of Config returned by parse_config into a variable
+named config, and we updated the code that previously used the separate query and file_path
+variables so it now uses the fields on the Config struct instead.
+
+Now our code more clearly conveys that **query** and **file_path** are related and that their purpose is
+to configure how the program will work. Any code that uses these values knows to find them in the
+**config** instance in the fields named for their purpose.
