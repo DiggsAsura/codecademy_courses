@@ -112,7 +112,7 @@ string data. However, cloning the data also makes our code very straightforward 
 have to manage the lifetimes of the references; in this circumstance, giving up a little performance
 to gain simplicity is a worthwihile trade-off.
 
-------
+- ---------
 ### The Trade-Offs of Using clone
 
 There's a tendency among many Rustaceans to avoid using clone to fix ownership problems
@@ -122,6 +122,4 @@ because you'll make these copies only once and your file path and query string a
 It's better to have a working program that's a bit inefficient than to try to hyperoptimize code
 on your first pass. As you become more experienced with Rust, it'll be easier to start with the
 most efficient solution, but for now, it's perfectly acceptable to call clone.
-------
-
-
+- ---------
