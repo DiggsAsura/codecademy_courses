@@ -220,3 +220,43 @@ to this example in Chapter 13, where we'll explore iterators in detail, and look
 
 
 
+### Using the search Function in the run Function
+
+Now that the **search** function is working and tested, we need to call **search** from our **run**
+function. We need to apss the **config.query** value and the **contents** that **run** reads from the file
+to the **search** function. Then **run** will print each line returned from **search**:
+
+
+*Filename: src/lib.rs* - check the file
+
+
+We're still using a **for** loop to return each line from **search** and print it.
+
+Now the entire program should work! Let's try it out, first with a word that should return exactly one
+line from the Emily Dickinson poem, "frog".
+
+Cool! Now let's try a word that will match multiple lines, like "body":
+
+$ cargo run -- body poem.txt
+   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.0s
+     Running `target/debug/minigrep body poem.txt`
+I'm nobody! Who are you?
+Are you nobody, too?
+How dreary to be somebody!
+
+And finally, let's make sure that we don't get any lines when we search for a word that isn't anywhere
+in the poem, such as "monomorphization":
+
+$ cargo run -- monomorphization poem.txt
+   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.0s
+     Running `target/debug/minigrep monomorphization poem.txt`
+
+
+Excellent! We've built our won mini version of a classic tool and learned a lot about how to structure
+applications. We've also learned a bit aobut file input and output, lifetimes, testing, and command
+line parsing.
+
+To round out this project, we'll briefly demonstrate how to work with environment variables and
+how to print to standard error, both of which are useful when you're writing command line programs.
