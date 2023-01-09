@@ -1,9 +1,13 @@
 use std::env;   // 12-1
 use std::fs;    // 12-4
+use std::process; // 12-10 - idk what for yet
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let config = Config::new(&args);
+    let config = Config::build(&args).unwrap_or_else(|err| {
+        println!("Problem parsing arguments: {}", err);
+        process::exit(1);
+    });
 
     println!("Searching for {}", config.query);
     println!("In file {}", config.file_path);
