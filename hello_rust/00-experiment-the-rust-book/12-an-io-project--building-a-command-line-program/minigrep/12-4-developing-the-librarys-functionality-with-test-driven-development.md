@@ -155,5 +155,19 @@ that you saw this way of using an iterator in Listing 3-5, where we used a **for
 to run some code on each item in a collection.
 
 
+### Searching Each Line for the Query
+
+Next, we'll check whether the current line contains our query string. Fortunately, strings have a
+helpful method named **contains** that does this for us! Add a call to the **contains** method in the
+**search** function, as shown in Listing 12-18. Note this sitll won't compile yet.
+
+
+*Filename: src/lib.rs* check the file
+12-18: Adding functionality to see whether the line contains the string in **query**
+
+
+At the moment, we're building up functionality. To get it to compile, we need to return a value from
+the body as we indicated we would in the function signature.
+
 
 
