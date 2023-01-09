@@ -126,3 +126,18 @@ Great, the test fails, exactly as we expected. Let's get the test to pass!
 
 
 
+## Writing Code to Pass the Test
+
+Currently, our test is failing because we always return an empty vector. To fix that and implement
+**search**, our program needs to follow these steps:
+
+    * Iterate thorugh each line of the contents.
+    * Check wheter the line contains our query string.
+    * If it does, add it to the list of values we're returning.
+    * If it doesn't, do nothing.
+    * Return the list of results that match.
+
+Let's work through each step, starting with iterating through lines.
+
+
+
