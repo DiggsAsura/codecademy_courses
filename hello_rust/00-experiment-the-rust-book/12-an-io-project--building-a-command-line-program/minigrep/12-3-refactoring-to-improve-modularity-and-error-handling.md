@@ -272,3 +272,90 @@ Problem parsing arguments: not enough arguments
 Great! This output is much friendlier for our users.
 
 
+## Extracting Logic from main
+
+Now that we've finished refactoring the configuration parsing, let's turn to the program's logic. As we
+stated in "Separation of Concerns for Binary Projects", we'll extract a function named **run** that will
+hold all the logic currently in the **main** function that isn't involved with setting up configuration or
+handling errors. When we're done, **main** will be concise and easy to verify by inspection, and we'll be
+able to write tests for all the other logic.
+
+Listing 12-11 shows the extracted **run** function. For now, we're just making the small, incremental
+improvement of extracing the function. We're still defining the function in *src/main.rs*.
+
+Filename: src/main.rs (check the file)
+12-11: Extracting a function **run** containing the rest of the program logic
+
+The **run** function now contains all the remaining logic from **main**, starting from treading the file. The
+**run** function takes the **Config** instance as an argument.
+
+
+### Returning Errors from the run Function
+
+With the remaining program logic separated into the **run** function, we can improve the error
+handling, as we did with **Config::build** in Listing 12-9. Instead of allowing the program to panic by
+calling **expect**, the **run** runction will return a **Result<T, E>** when something goes wrong. This will
+let us further consolidate the logic around handling errors into **main** in a user_friendly way. Listing
+12-12 shows the changes we need to make to the signature and body of **run**.
+
+Filename: src/main.rs (see the file)
+12-12: Changing the **run** function to return **Result**
+
+We've made three significant changes here. First, we changed the reutnr type of the **run** function to
+**Result<(), Box<dyn Error>>**. This function previously returned the unit type, (), and we keep
+that as the value returned in the **Ok** case.
+
+For the error type, we used the *trait object* **Box<dyn Error>** (and we've brought **std::error::Error**
+into scope with a **use** statement at the top). We'll cover trait objects in Chapter 17. For now, just
+know that **Box<dyn Error>** means the function will return a type that implements the **Error** trait,
+but we don't have to specify what particular type the return value will be. This gives us flexibility to
+return error values that may be of different types in different error cases. The **dyn** keyword is short
+for "dynamic".
+
+Second, we've removed the call to **expect** in favor of the **?** operator, as we talked about in Chapter
+9. Rather than **panic!** on an error, **?** will return the error value from the current function for the
+caller to handle.
+
+Third, the **run** function now returns an **Ok** value in the success case. We've declared the **run**
+function's success type as () in the signature, which means we need to wrap the unit type value in
+the **Ok** value. This **Ok(())** syntax might look a bit strange at first, but using **()** like this is the
+idiomatic way to indicate that we're callilng **run** for its side effects only; it doesn't return a value we
+need.
+
+When you run this code, it will compile but will display a warning:
+
+$ cargo run the poem.txt
+   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+warning: unused `Result` that must be used
+  --> src/main.rs:19:5
+   |
+19 |     run(config);
+   |     ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_must_use)]` on by default
+   = note: this `Result` may be an `Err` variant, which should be handled
+
+warning: `minigrep` (bin "minigrep") generated 1 warning
+    Finished dev [unoptimized + debuginfo] target(s) in 0.71s
+     Running `target/debug/minigrep the poem.txt`
+Searching for the
+In file poem.txt
+With text:
+I'm nobody! Who are you?
+Are you nobody, too?
+Then there's a pair of us - don't tell!
+They'd banish us, you know.
+
+How dreary to be somebody!
+How public, like a frog
+To tell your name the livelong day
+To an admiring bog!
+
+
+Rust tells us that our code ignored the **Result** value and the **Result** value might indicate that an
+error occured. But we're not checking to see wheter or not there was an error, and the compiler
+reminds us that we probably meant to have some error-handling code here! Let's rectify that
+problem now.
+
+
+
