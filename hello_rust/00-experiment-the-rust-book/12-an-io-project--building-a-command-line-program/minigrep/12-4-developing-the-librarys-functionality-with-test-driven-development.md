@@ -170,4 +170,53 @@ At the moment, we're building up functionality. To get it to compile, we need to
 the body as we indicated we would in the function signature.
 
 
+### Storing Matching Lines
+
+To finish this function, we need a way to store the matching lines that we want to return. For that, we
+can make a mutable vector before the **for** loop and call the **push** method to store a **line** in the
+vector. After the **for** loop, we return the vector, as shown in Listing 12-19.
+
+
+*Filename: src/lib.rs* - check the file
+12-19: Storing the lines that match so we can return them
+
+
+Now the **search** function should return only the lines that contain **query**, and our test should pass.
+Let's run the test:
+
+
+-
+$ cargo test
+   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+    Finished test [unoptimized + debuginfo] target(s) in 1.22s
+     Running unittests src/lib.rs (target/debug/deps/minigrep-9cd200e5fac0fc94)
+
+running 1 test
+test tests::one_result ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/minigrep-9cd200e5fac0fc94)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests minigrep
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+-
+
+
+Our test passed, so we know it works!
+
+At this pint, we could consider oppertunities for refactoring the implementation of the search
+function while keeping the tests passing to maintain the same functionality. The code in the search
+function isn't too bad, but it doesn't take advantage of some useful features of iterators. We'll return
+to this example in Chapter 13, where we'll explore iterators in detail, and look at how to improve it.
+
+
 
