@@ -156,3 +156,54 @@ types in the standard library, such as **String**, by calling **String::new**. S
 We've updated **main** where we were calling **parse_config** to instead call **Config::new**. We've
 changed the name of **parse_config** to **new** and moved it withint an **impl** block, which associates
 the **new** function with **Config**. Try compiling this code again to make sure it works.
+
+
+## Fixing the Error Handling
+
+Now we'll work on fixing our error handling. Recall that attempting to access the values in the args
+vector at index 1 or index 2 will cause the program ton panic if the vector contains fewer than three
+items. Try running the program without any arguments; it will look like this:
+
+$ cargo run
+   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.0s
+     Running `target/debug/minigrep`
+thread 'main' panicked at 'index out of bounds: the len is 1 but the index is 1', src/main.rs:27:21
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+The line **index out of bounds: the len is 1 but the index is 1** is an error message intended
+for programmers. It won't help our end users understand what they should do instead. Let's fix that now.
+
+
+### Improving the Error message
+
+In Listing 12-8, we add a check in the **new** function that will verify that the slice is long enough before
+accessing index 1 and 2. If the slice isn't long enough, the program panics and displays a better error
+message.
+
+*filename: src/main.rs*
+12-8: Adding a check for the number or arguments
+
+This code is similar to the Guess:new function we wrote in Listing 9-13, where we called **panic!**
+when the **value** argument was out of the range of valid values. Instead of checking for a range of
+values here, we'ere checking that the length of args is at least 3 and the rest of the function can
+operate under the assumption that this code has been met. If **args** has fewer than three items,
+this condition will be true, and we call the panic! macro to end the program immediately.
+
+With these extra few lines of code in **new**, let's run the program without andy arguments again to see
+what the error looks like now:
+
+$ cargo run
+   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.0s
+     Running `target/debug/minigrep`
+thread 'main' panicked at 'not enough arguments', src/main.rs:26:13
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+This output is better: we now have a reasonable error message. However, we also have extraneous
+information we don't want to give to our users. Perhaps using the technique we used in Listing 9-13
+isn't the best to use here: a call to panic! is more appropriate for a programming problem than a
+usage problem, as discussed in Chapter 9. Instead, we'll use the other technique you learned about
+in Chapter 9- returning a Result that indicates either success or error.
+
+

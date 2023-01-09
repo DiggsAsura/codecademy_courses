@@ -21,9 +21,11 @@ struct Config {
 
 impl Config {
     fn new(args: &[String]) -> Config {
+        if args.len() < 3 { // 12-8
+            panic!("Not enough arguments");
+        }
         let query = args[1].clone();
         let file_path = args[2].clone();
-
         Config { query, file_path }
     }
 }
