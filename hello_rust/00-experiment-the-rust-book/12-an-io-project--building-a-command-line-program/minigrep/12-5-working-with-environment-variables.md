@@ -32,3 +32,165 @@ different casing from the query. This is our failing test, and it will fail to c
 yet defined the **search_case_insensitive** function. Feel free to add a skeleton implementation that
 always returns an empty vector, similar to the way we did for the **search** function in Listing 12-16 to
 see the test compile and fail.
+
+
+
+### Implementing the search_case_insensitive Function
+
+The **search_case_insensitive** function, shown in Listing 12-21, will be almost the same as the
+**search** function. The only difference is that we'll lowercase the **query** and each **line** so whatever
+the case of the input arguments, they'll be the same case when we check whether the line contains the
+query.
+
+
+    *Filename: src/lib.rs* - check the file
+    12-21: Defining the search_case_insensitive functions to lowercase the query and the line before
+    comparing them
+
+First, we loowercase the **query** string and store it in a shadowed variable with the same name. Calling
+**to_lowercase** on the query is necessary so no matter whether the user's query is **"rust", "RUST",
+"Rust"**, or **"rUsT"**, we'll treat the querty as if it were **"rust"** and be insensitive to the case. While
+**to_lowercase** will handle basic Unicode, it won't be 100% accurate. If we were writing real
+application, we'd want to do a bit more work here, but this section is about environment variables,
+not Uniceode, so we'll leave it at that here.
+
+Note that **query** is now a **String** rather than a string slice, because calling **to_lowercase** creates
+new data rather than referenceing existing data. Say the query is **rUsT"**, as an example: that string
+slice doesn't contain a lowercase **u** or **t** for us to use, so we have to allocate a new **String**
+containing **"rust"**. When we pass **query** as an argument to the **contains** method now, we need to
+add an ampersand because the signature of **contains** is defined to take a string slice.
+
+Next, we add a call to **to_lowercase** on each **line** to lowercase all characters. Now that we've
+converted **line** and **query** to lowercase, we'll find matches no matter what the case of the query is.
+
+Let's see if this implementation passes the tests:
+
+
+$ cargo test
+   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+    Finished test [unoptimized + debuginfo] target(s) in 1.33s
+     Running unittests src/lib.rs (target/debug/deps/minigrep-9cd200e5fac0fc94)
+
+running 2 tests
+test tests::case_insensitive ... ok
+test tests::case_sensitive ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+Running unittests src/main.rs (target/debug/deps/minigrep-9cd200e5fac0fc94)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests minigrep
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+Great! They passed. Now, let's call the new **search_case_sensitive** function from the **run**
+function. First, we'll add a configuratino option to the **Config** struct to switch between case-
+sensitive and case-insensitive search. Adding this field will cause compiler errors because we aren't
+initializing this field anywhere yet:
+
+
+    *Filename: lib.rs* - check the file
+
+
+We added the **ignore_case** field that holds a Boolean. Next, we need the **run** function to check the
+**ignore_case** field's value and use that to decide whether to call the **search** function or the
+**search_case_insensitive** function, as shown in Listing 12-22. This still won't comiple yet.
+
+
+    *Filename: src/lib.rs* - check the file
+    12-22: Calling either **search** or **search_case_insensitive** based on the value in
+    **config.ignore_case**
+
+Finally, we need to check for the environment variable. The functions for working with environment
+variables are in the **env** module in the standard library, so we bring that module into scope at the
+top of *src/lib.rs*. Then we'll use the **var** function from the **env** module to check to see if any value
+has been set for an environment variable named **IGNORE_CASE**, as shown in Listing 12-23
+
+
+    *Filename: src/lib.rs*
+    12-23: Checking for any value in an environment variable named IGNORE_CASE
+
+
+Here, we create a new variable **ignore_case**. To set its value, we call the **env::var** function and
+pass it the name of the **IGNORE_CASE** environment variable. The **env::var** function returns a
+**Result** that will be the successful **Ok** variant that contains the value of the environment variable if
+the environemtn varialbe is set to any value. It will reutnr the **Err** variant if the environment
+variable is not set.
+
+We're using the **is_ok** method on the **Result** to check whether the environement varialb eis set,
+which means the program should do a case-insensitive search. If the **IGNORE_CASE** environment
+variable isn't set to do anything, **is_ok** will return false and the program will perform a case-sensitive
+search. We don't care about the *value* of the environment variable, just whether it's set or unset, so
+we're checking **is_ok** rather than using **unwrap, expect** or any of the other methods we've seen
+on **Result**.
+
+We pass the value in the **ignore_case** variable to the **Config** instance so the **run** function can read
+that value and decide whether to call **search_case_insensitive** or **search**, as we implemented in
+Listing 12-22.
+
+Let's give it a try! First, we'll run our program without ehe environment variable set and with the
+query **to**, which should match any line that contains the word "to" in all lowercase:
+
+
+$ cargo run -- to poem.txt
+   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.0s
+     Running `target/debug/minigrep to poem.txt`
+Are you nobody, too?
+How dreary to be somebody!
+
+
+Looks like that still works! Now, let's run the program with **IGNORE_CASE** set to **1** but with the same
+query **to**.
+
+
+$ IGNORE_CASE=1 cargo run -- to poem.txt
+
+
+If you're using PowerShell, you will need to set the environemnt variable and run the program as
+separate commands:
+
+
+PS> $Env:IGNORE_CASE=1; cargo run -- to poem.txt
+
+
+This will make **IGNORE_CASE** persist for the remainder of your shell session. It can be unset with the
+**Remove-Item** cmdlet:
+
+
+PS> Remove-Item Env:IGNORE_CASE
+
+
+We should get lines that contain "to" that might have uppercase letters:
+
+
+
+Are you nobody, too?
+How dreary to be somebody!
+To tell your name the livelong day
+To an admiring bog!
+
+
+(actually, mine does not work it seems. still print only 2, and i have the exact same code hmm)
+
+
+Excellent, we also got lines containing "To"! Our **minigrep** program can now do case-insensitive
+searching controlled by an environement variable. Now you know how to manage options set using
+either command line arguments or environement variables.
+
+Some programs allow arguments *and* environement variables for the same configuration. In those
+cases, the programs decide that one or the other takes precedence. For another exercise on your
+own, try controlling case sensitivity through either a command line argument or an environment
+variable. Decide whether the command line argument or the environemtn variable should take
+precedence if the program is run with one set to case sensitive and one set to ignore case.
+
+The **std::env** module contains many more useful features for dealing with environment variables:
+check out its documentation to see what is available.
+
