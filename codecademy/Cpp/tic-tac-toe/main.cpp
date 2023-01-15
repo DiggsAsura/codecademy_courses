@@ -1,4 +1,3 @@
-// Importerer biblioteker
 #include <iostream>
 
 using namespace std;    // for å slippe å skrive std:: foran cout, cin, endl
@@ -11,7 +10,7 @@ int player;     // Markerer hvilken spiller sin tur det er
 
 
 // Funksjonen som printer ut brettet.
-void drawBoard() {
+void printBoard() {
     cout << endl;
     cout << " " << board[0][0] << " | " << board[0][1] << " | " << board[0][2] << endl;
     cout << "---+---+---" << endl;
@@ -21,14 +20,14 @@ void drawBoard() {
     cout << endl;
 }
 
-
+// Funksjon som sørger for at man kan plassere sin marker på brettet
 bool placeMarker(int slot) {
-    int row = slot / 3;
-    int col;
+    int row = slot / 3; // Finner riktig rad
+    int col;            // Finner riktig kolonne
 
     if(slot % 3 == 0) { // Hvis slot er delelig på 3, så er det en ny rad
-        row = row - 1;
-        col = 2;
+        row = row - 1;  // Vi må trekke fra 1 fra raden, fordi vi starter på 0
+        col = 2;        // Vi setter kolonnen til 2, fordi vi starter på 0
     }
     else {
         col = (slot % 3) - 1;
@@ -71,14 +70,14 @@ void swap_player_and_marker() {
 
 // Funksjonen som kjører selve spillet
 void game() {
-    cout << "Velg din marøk: X eller O" << endl;
+    cout << "Velg din markør, X eller O: ";
     char marker_p1;
     cin >> marker_p1;
 
     player = 1;
     marker = marker_p1;
 
-    drawBoard();
+    printBoard();
 
     int player_won;
 
@@ -102,7 +101,7 @@ void game() {
             i--;
             continue;
         }
-        drawBoard();
+        printBoard();
 
         player_won = winner();
 
