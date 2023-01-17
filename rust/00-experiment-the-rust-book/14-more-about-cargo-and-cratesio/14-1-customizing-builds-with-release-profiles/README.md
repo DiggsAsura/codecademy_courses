@@ -49,6 +49,6 @@ project's *Cargo.toml* file:
 
 Filename: Cargo.toml
 
-**[profile.dev]
-opt-level = 1**
+**[profile.dev]**
+**opt-level = 1**
 
