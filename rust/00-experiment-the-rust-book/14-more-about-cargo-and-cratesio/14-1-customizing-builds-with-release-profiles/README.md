@@ -25,12 +25,10 @@ default values for the **opt-level** setting for the **dev** and **release** pro
 
 Filename: Cargo.toml
 
----
 **[profile.dev]**
 **opt-level = 0**
 
 **[profile.release]**
 **opt-level = 3**
----
 
 
