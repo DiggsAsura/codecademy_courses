@@ -4,5 +4,6 @@ members = [
     "adder",
     "add_one",
     "add_two",
+    "add_rng",
 ]
 
