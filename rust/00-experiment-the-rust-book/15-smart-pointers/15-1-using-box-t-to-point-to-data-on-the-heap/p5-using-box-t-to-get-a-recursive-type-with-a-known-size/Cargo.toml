@@ -1,0 +1,8 @@
+[package]
+name = "p5-using-box-t-to-get-a-recursive-type-with-a-known-size"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
