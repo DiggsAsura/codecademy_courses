@@ -1,5 +1,5 @@
 [package]
-name = "p3-the-api-of-mutex-t"
+name = "p2-the-api-of-mutex-t"
 version = "0.1.0"
 edition = "2021"
 
