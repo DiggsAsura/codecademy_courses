@@ -14,5 +14,3 @@ As you saw in Chapter 15, where smart pointers made multiple ownership possible,
 ownership can add complexity because these different owners need managing. Rust's type system and
 ownership rules greatly assist in getting this management correct. For example, let's look at
 mutexes, one of the more common concurrency primitives for shared memory.
-
-
