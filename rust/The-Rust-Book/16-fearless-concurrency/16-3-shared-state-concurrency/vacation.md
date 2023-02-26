@@ -6,3 +6,6 @@ unsure if its possible to get anything done.
 
 ### Feb 25 2023
 Rented a car and going Altea on a hike.
+
+### Feb 26 2023
+Off to a local market. Maybe if lucky, get some time to study a bit this evening.
