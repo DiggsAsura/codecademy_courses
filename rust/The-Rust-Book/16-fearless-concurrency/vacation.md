@@ -12,3 +12,6 @@ Off to a local market. Maybe if lucky, get some time to study a bit this evening
 
 ### Feb 27 2023
 Alicante and a Outlet mall.
+
+### Feb 28 2023
+Visited Maurice and Dock39 (climbpark)
