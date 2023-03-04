@@ -27,3 +27,5 @@ inherit from **Component** and thus inherit the **draw** method. They could each
 method to define their custom behavior, but the framework could treat all of the types as if they
 were **Component** instances and call **draw** on them. But because Rust doesn't have inheritance, we
 need another way to structure the **gui** library to allow users to extend it with new types.
+
+
