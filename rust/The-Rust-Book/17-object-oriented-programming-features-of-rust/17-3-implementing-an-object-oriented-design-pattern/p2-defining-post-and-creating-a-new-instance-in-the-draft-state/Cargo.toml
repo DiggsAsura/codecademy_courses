@@ -1,0 +1,8 @@
+[package]
+name = "p2-defining-post-and-creating-a-new-instance-in-the-draft-state"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
