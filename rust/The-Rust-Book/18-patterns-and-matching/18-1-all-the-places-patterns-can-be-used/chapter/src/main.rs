@@ -133,8 +133,31 @@ fn ex3() {
 // while let to pop every element off our stack.
 
 
+
+// for Loops
+// ---------
+//
+// In a for loop, the value that directly follows the keyword for is a pattern. For example, in for
+// x in y the x is the pattern. Listing 18-3 demonstrates how to use a pattern in a for loop to
+// destructure, or break apart, a tuple as part of the for loop.
+
+fn ex4() {
+    let v = vec!['a', 'b', 'c'];
+
+    for (index, value) in v.iter().enumerate().map(|(i, v)| (v, i+1)) {
+        println!("{} is at index {}", value, index);
+    }
+}
+// Listing 18-3: Using a pattern in a for loop to destructure a tuple
+
+// We adapt an iterator using the enumerate method so it produces a value and the index for that
+// value, placed into a tuple. The first value produced is the tuple (0, 'a'). When this value is
+// matched to the pattern (index, value), index will be 0 and value will be 'a', printing the first
+// line of the output.
+
 fn main() {
     ex1();
     ex2();
     ex3();
+    ex4();
 }
