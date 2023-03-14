@@ -45,6 +45,67 @@ fn ex1() {
 // specified, for example. We'll cover the _ pattern in more detail in the "Ignoring Values in a
 // Pattern" section later in this chapter.
 
+
+
+// Conditional if let Expressions
+// ------------------------------
+//
+// In Chapter 6 we discussed how to use if let expressions mainly as a shorter way to write the
+// equivalent of a match that only matches one case. Optionally, if let can have a corresponding
+// else containing code to run if the pattern in the if let doesn't match.
+//
+// Listing 18-1 shows that it's also possible to mix and match if let, else if, and else if let
+// expressions. Doing so gives us more flexibility than a match expression in which we can express
+// only one value to compare with the patterns. Also, Rust doesn't require that the conditions in a
+// series of if let, else if, else if let arms relate to each other.
+//
+// The code in Listing 18-1 determines what color to make your background based on a series of
+// checks for several conditions. For this example, we've created variables with hardcoded values
+// that a real program might receive from user input.
+
+fn ex2() {
+    let favorite_color: Option<&str> = Some("Greenish");
+    let is_tuesday = false;
+    let age: Result<u8, _> = "34".parse();
+
+    if let Some(color) = favorite_color {
+        println!("Using your favorite color, {color}, as the background");
+    } else if is_tuesday {
+        println!("Tuesday is green day!");
+    } else if let Ok(age) = age {
+        if age > 30 {
+            println!("Using purple as the background color");
+        } else {
+            println!("Using orange as the background color");
+        }
+    } else {
+        println!("Using blue as the background color");
+    }
+}
+
+// Listing 18-1: Mixing if let, else if, else if let, and else
+
+// If the user specifies a favorite color, that color is used as the background. If no favorite
+// color is specified and today is Tuesday, the background color is green. Otherwise, if the user
+// specifies their age as a sgring and we can parse it as a number successfully, the color is
+// either purple or orange depending on the value of the number. If none of these conditions apply,
+// the background color is blue.
+//
+// This conditional structure lets us support complex requirements. With the hardcoded values we
+// have here, this example will print Using purple as the background color.
+//
+// You can see that if let can also introduce shadowed variables in the same way taht match arms
+// can: the line if let Ok(age) = age introduces a new shadowed age variable that contains the
+// value inside the Ok variant. This means we need to place the if age > 30 condition within that
+// block: we can't combine these two conditions into if let Ok(age) = age && age > 30. The
+// shadowed age we want to compare to 30 isn't valid until the new scope starts with the curly
+// brackets.
+//
+// The downside of using if let expressions is that the compiler doesn't check for exhaustiveness,
+// whereas with match expressions it does. If we omitted the last else block and therefor missed
+// handling some cases, the compiler would not alert us to the possible logic bug.
+
 fn main() {
     ex1();
+    ex2();
 }
