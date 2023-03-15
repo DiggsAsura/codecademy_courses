@@ -155,9 +155,63 @@ fn ex4() {
 // matched to the pattern (index, value), index will be 0 and value will be 'a', printing the first
 // line of the output.
 
+
+
+// let Statements
+// --------------
+//
+// Prior to this chapter, we had only explicitly discussed using patterns with match and if let,
+// but in fact, we've used patterns in other places as well, including in let statements. For
+// example, consider this straightforward variable assignment with let:
+
+// let x = 5;
+
+// Every time you've used a let statement like this you've been using patterns, althrough you might
+// not have realized it! ore formally, a let statement looks like this:
+
+// let PATTERN = EXPRESSION;
+
+// In statements like let = 5; with a variable name in the PATTERN slot, the variable name is just
+// a particularly simple form of a pattern. Rust compares the expression against the pattern and
+// assigns any names it finds. So in the let x = 5; example, x is a pattern that means "bind what
+// matches here to the variable x." Because the name x is the whole pattern, this pattern
+// effectively means "bind everything to the variable x, whatever the value is."
+//
+// To see the pattern matching aspect of let more clearly, consider Listing 18-4, which uses a
+// pattern with let to destructure a tuple.
+
+fn ex5() {
+    let (x, y, z) = (1, 2, 3);
+    println!("x: {}, y: {}, z: {}", x, y, z);
+}
+
+// Listing 18-4: Using a paattern to destructure a tuple and create three variables at once
+
+// Here, we match a tuple against a pattern. Rust compares the value (1, 2, 3) to the pattern (x,
+// y, z) and sees that the value matches the pattern, so Rust binds 1 to x, 2 to y, and 3 to z. You
+// can think of this tuple pattern as nesting three individual variable patterns inside it.
+//
+// If the number of elements in the pattern doesn't match the number of elements in the tuple, the
+// overall type won't match and we'll get a compiler error. For example, Listing 18-5 shows an
+// attempt to destructure a tuple with three elements into two variables, which won't work.
+
+// let (x, y) = (1, 2, 3);
+
+// Listing 18-5: Incorrectly constructing a pattern whose variables don't match the number of
+// elements in the tuple
+
+// To fix this error, we could ignore one or more of the values in the tuple using _ or .., as
+// you'll see in the "Ignoring Values in a Pattern" section. If the problem is that we have too
+// many variables in the pattern, the solution is to make the types match by removing variables so
+// the number of variables equals the number of elements in the tuple.
+
+
+
 fn main() {
     ex1();
     ex2();
     ex3();
     ex4();
+    ex5();
 }
+
