@@ -29,3 +29,10 @@ take the easy route. Because Rust is a systems programming language, we can choo
 abstraction we want to work with and can go to a lower level than is possible or practical in other
 languages. We'll therefore write the basic HTTP server and thread pool manually so you can learn
 the general ideas and techniques behind the crates you might use in the future.
+
+
+
+Notes:
+I will follow the normal folder structure throughout this chapter as well, even though the program
+probably will be instructed to make in a separate project folder. I'll go back and redo it all in a
+new project at the end.
