@@ -12,9 +12,10 @@ Now enter the code in Listing 20-1 in *src/main.rs* to start. This code will lis
 127.0.0.1:7878 for incoming TCP streams. When it gets an incoming stream, it will print
 **Connection established!**.
 
-*use std::net::TcpListener;
+--
+use std::net::TcpListener;
 
-* fn main() {
+fn main() {
     let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
 
     for stream in listener.incoming() {
@@ -23,3 +24,4 @@ Now enter the code in Listing 20-1 in *src/main.rs* to start. This code will lis
         println!("Connection established!");
     }
 }
+--
