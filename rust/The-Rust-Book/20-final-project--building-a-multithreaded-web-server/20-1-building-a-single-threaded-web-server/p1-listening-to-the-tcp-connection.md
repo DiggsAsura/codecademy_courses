@@ -12,7 +12,7 @@ Now enter the code in Listing 20-1 in *src/main.rs* to start. This code will lis
 127.0.0.1:7878 for incoming TCP streams. When it gets an incoming stream, it will print
 **Connection established!**.
 
-```
+```rust
 use std::net::TcpListener;
 
 fn main() {
