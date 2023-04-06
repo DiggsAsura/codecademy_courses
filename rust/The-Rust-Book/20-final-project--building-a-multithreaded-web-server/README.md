@@ -8,7 +8,7 @@ For our ifnal project, we'll make a web server that says "hello" and looks like 
 web browser.
 
 <fig 20-1>
-https://rust-book.cs.brown.edu/img/trpl20-01.png
+![alt text](https://rust-book.cs.brown.edu/img/trpl20-01.png)
 
 Figure 20-1: Our final shared project
 
