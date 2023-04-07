@@ -42,7 +42,7 @@ fn handle_connection(mut stream: TcpStream) {
     stream.write_all(response.as_bytes()).unwrap();
 }
 ```
-*Listing 20-3: Writing a tiny successful HTTP response to the stream
+*Listing 20-3: Writing a tiny successful HTTP response to the stream*
 
 The first new line defines the **response** variable that holds the success message's data. Then we call
 **as_bytes** on our **response** to convert the string data to bytes. The **write_all** method on **stream**
