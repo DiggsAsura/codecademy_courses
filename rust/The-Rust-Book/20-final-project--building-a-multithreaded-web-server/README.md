@@ -30,8 +30,5 @@ languages. We'll therefore write the basic HTTP server and thread pool manually 
 the general ideas and techniques behind the crates you might use in the future.
 
 
-
-Notes:
-I will follow the normal folder structure throughout this chapter as well, even though the program
-probably will be instructed to make in a separate project folder. I'll go back and redo it all in a
-new project at the end.
+--
+hello/          -- Single thread version
