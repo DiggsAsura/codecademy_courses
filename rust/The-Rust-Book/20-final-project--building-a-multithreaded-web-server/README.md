@@ -30,5 +30,7 @@ languages. We'll therefore write the basic HTTP server and thread pool manually 
 the general ideas and techniques behind the crates you might use in the future.
 
 
---
+```
 hello/          -- Single thread version
+```
+
