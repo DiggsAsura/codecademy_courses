@@ -1,3 +1,0 @@
-(function() {var implementors = {
-"p6code":[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.68.2/core/marker/trait.Sync.html\" title=\"trait core::marker::Sync\">Sync</a> for <a class=\"struct\" href=\"p6code/struct.ThreadPool.html\" title=\"struct p6code::ThreadPool\">ThreadPool</a>",1,["p6code::ThreadPool"]]]
-};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
