@@ -10,3 +10,5 @@ Next, then, we'll implement the **Drop** trait to call **join** on each of the t
 can finish the requests they're working on before closing. Then we'll implement a way to tell the
 threads they should stop accepting new requests and shut down. To see this code in action, we'll
 modify our server to accept only two requests before gracefully shutting down its thread pool.
+
+
