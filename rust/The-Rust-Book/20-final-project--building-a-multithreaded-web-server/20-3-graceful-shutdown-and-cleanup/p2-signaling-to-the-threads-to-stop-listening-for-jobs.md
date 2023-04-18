@@ -64,4 +64,54 @@ happens, all the calls to **recv** that the workers do in the infinite loop will
 will finish when the **ThreadPool drop** implementation calls **join** on them.
 
 Filename: src/lib.rs
+```rust
+impl Worker {
+    fn new(id: usize, receiver: Arc<Mutex<mpsc::Reciver<Job>>>) -> Worker {
+        let thread = thread::spawn(move || loop {
+            let message = receiver.lock().unwrap().recv();
+
+            match message {
+                Ok(job) => {
+                    println!("Worker {id} got a job; executing.");
+
+                    job();
+                }
+                Err(_) => {
+                    println!("Worker {id} disconnected; shutting down.");
+                    break;
+                }
+            }
+        });
+
+        Worker {
+            id,
+            thread: Some(thread),
+        }
+    }
+}
+```
+*Listing 20-24: Explicitly break out of the loop when **recv** returns an error*
+
+To see this code in action, let's modify **main** to accept only two requests before gracefully shutting
+down the server, as shown in Listing 20-25.
+
+Filename: src/main.rs
+```rust
+fn main() {
+    let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
+    let pool = ThreadPool::new(4);
+
+    for stream in listener.incoming().take(2) {
+        let stream = stream.unwrap();
+
+        pool.execute(|| {
+            handle_connection(stream);
+        });
+    }
+
+    println!("Shutting down.");
+}
+```
+*Listing 20-25: Shut down the server after serving two requests by exiting the loop*
+
 
