@@ -1,5 +1,8 @@
 # Appendix A: Keywords
 
+Ref: https://rust-book.cs.brown.edu/appendix-01-keywords.html might get updated!
+
+
 The following list contains ekywords that are reserved for current or future use by the Rust
 language. As such, they cannot be used as identifiers (except as raw identifiers as we'll discuss in the
 "Raw Identifiers" section). Identifiers are names of functions, variables, parameters, struct fields,
@@ -50,3 +53,22 @@ The following is a list of keywords currently in use, with their functionality d
 * **where** - denote clauses that constrain a type
 * **while** - loop conditionally based on the result of an expression
 
+
+## Keywords Reserved for Future Use
+
+The following kewords do not yet have any functionality but are reserved by Rust for potential
+future use.
+
+* **abstract**
+* **become**
+* **box**
+* **do**
+* **final**
+* **macro**
+* **override**
+* **priv**
+* **try**
+* **typeof**
+* **usized**
+* **virtual**
+* **yield**
