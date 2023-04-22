@@ -15,7 +15,10 @@ Table B-1: Operators
 
 | Operator  | Example           | Explanation                   | Overloadable?     |
 | --------- | ----------------- | ----------------------------- | ----------------- |
-| !         | ident!(...),      |                               |                   |
+| !         | ident!(...),      | Macro expansion               |                   |
 |           | ident!{...},      |                               |                   |
 |           | ident![...]       |                               |                   |
+| !         | !expr             | Bitwise or logical complement | Not               |
+| !=        | expr != expr      | Nonequality comparison        | PartialEq         |
+| %         | expr % expr       | Arithmetic remainder          | Rem               |
 |
