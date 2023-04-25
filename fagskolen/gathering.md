@@ -3,5 +3,5 @@
 No/little Rust focus this week due to full force school this week. Several presentations and
 tests to finish off the year.
 
-Today was english presentation, on the topico Business in Japan. Went well.
-
+Monday: Today was english presentation, on the topico Business in Japan. Went well.
+Tuesday: Did not go school, no tests or presentations. However received a new job offer.
