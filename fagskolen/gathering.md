@@ -8,5 +8,3 @@ Tuesday: Did not go school, no tests or presentations. However received a new jo
 Wednesday: Cyber security/networking test
 Thursday: Oral test in wednesday topic
 Friday: Physichs test
-
-
