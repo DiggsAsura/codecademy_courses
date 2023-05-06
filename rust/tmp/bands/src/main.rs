@@ -1,6 +1,7 @@
 use std::fs::File;
 use std::io::prelude::*;
 use std::io;
+use std::fs::OpenOptions;
 
 struct Artist {
     name: String,
@@ -8,7 +9,7 @@ struct Artist {
 }
 
 
-fn main() {
+fn main() -> io::Result<()> {
     let mut name = String::new();
     println!("Enter band/artist name: ");
     io::stdin().read_line(&mut name).expect("Failed to read line");
@@ -23,12 +24,19 @@ fn main() {
     };
 
     // Create a new file, or truncate the existing one
-    let mut file = File::create("output.txt");
+//    let mut file = File::create("output.txt");
+    let mut file = OpenOptions::new()
+        .append(true)
+        .create(true)
+        .open("output.txt")?;
 
     let entry = format!("{} - {}", band.name, band.album);
 
     // Write the band name to the file!
-    file.expect("Error").write_all(entry.as_bytes());
+    file.write_all(entry.as_bytes())?;
+
+    Ok(())
 }
+
 
 
