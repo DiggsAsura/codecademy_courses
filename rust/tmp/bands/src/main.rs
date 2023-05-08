@@ -8,8 +8,8 @@ struct Artist {
     album: String,
 }
 
-
 fn main() -> io::Result<()> {
+    println!("bands v0.0.1");
     let mut name = String::new();
     println!("Enter band/artist name: ");
     io::stdin().read_line(&mut name).expect("Failed to read line");
