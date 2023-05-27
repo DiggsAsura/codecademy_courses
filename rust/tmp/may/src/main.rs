@@ -1,6 +1,7 @@
 use std::fmt::Debug;
 
 #[derive(Debug)]
+#[allow(dead_code)]
 enum Month {
     January,
     February,
@@ -28,5 +29,7 @@ impl Summary for Month {
 }
 
 fn main() {
-    println!("Hello, world!");
+    let may = Month::May;
+
+    println!("{}", may.summarize());
 }
