@@ -14,3 +14,6 @@ Moved a ton of old folders into "archive" folders, to try keep the folders more 
 ### June 3 2023
 Did I mena 2023 above?
 However, new job at Akari started two days ago!
+
+### June 7 2023
+Started new work, tired af, but trying to keep going here too.
