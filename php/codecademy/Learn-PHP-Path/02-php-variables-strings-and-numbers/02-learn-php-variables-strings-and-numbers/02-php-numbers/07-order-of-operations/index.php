@@ -12,3 +12,5 @@ echo (2 + 3) * 4; // 20
 echo "\n";
 
 echo 94 - 4.25 + 7 - (23.5 * 1.2) + (20 / 4) . "\n";
+
+// PEMDAS - remember this
