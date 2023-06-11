@@ -17,4 +17,4 @@ $cookies_per_serving = 4;
 $leftover_cookies = $num_cookies % $cookies_per_serving;
 echo $leftover_cookies . "\n"; // 3
 
-
+echo 84 % 6 . "\n"; // 2
