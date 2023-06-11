@@ -11,3 +11,8 @@ greetLearner();
 
 // typically starts with a verb to describe what the function does
 
+function testFunction() {
+    echo "This is a test function\n";
+}
+
+testFunction();
