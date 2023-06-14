@@ -16,3 +16,4 @@ $error = notFound();
 $heart = greetLearner();
 
 echo "I received a $error, but it's ok because I also received $heart. \n";
+echo "Laters!\n";
