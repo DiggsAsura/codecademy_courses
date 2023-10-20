@@ -17,3 +17,7 @@ However, new job at Akari started two days ago!
 
 ### June 7 2023
 Started new work, tired af, but trying to keep going here too.
+
+### October 20
+New work, new real life, new everything basically. Totally out of the loop here but might climb back
+at it.
